@@ -1,27 +1,25 @@
-import java.util.Scanner;
-
 /**
- * TicTacToe
- * UC3 reads a slot number (1–9) entered by the user.
+ * UC4: Convert slot (1–9) to row & column (0–2)
  */
 public class TicTacToe {
 
     public static void main(String[] args) {
+        int slot = 7;
 
-        int slot = getUserSlot();
-        System.out.println("Slot entered: " + slot);
+        int row = getRowFromSlot(slot);
+        int col = getColFromSlot(slot);
+
+        System.out.println("Row: " + row);
+        System.out.println("Column: " + col);
     }
 
-    /**
-     * Reads an integer slot value from the user.
-     */
-    static int getUserSlot() {
-        Scanner scanner = new Scanner(System.in);
+    // Returns row index (0–2)
+    static int getRowFromSlot(int slot) {
+        return (slot - 1) / 3;
+    }
 
-        System.out.print("Enter a slot number (1-9): ");
-
-        int slot = scanner.nextInt();  // Read input
-
-        return slot;  // Return the entered value
+    // Returns column index (0–2)
+    static int getColFromSlot(int slot) {
+        return (slot - 1) % 3;
     }
 }
