@@ -1,69 +1,27 @@
-import java.util.Random;
+import java.util.Scanner;
 
 /**
  * TicTacToe
- * UC2 performs a random toss to decide who plays first and assigns
- * symbols (X or O) to the human and computer accordingly.
+ * UC3 reads a slot number (1–9) entered by the user.
  */
 public class TicTacToe {
 
-    static boolean isHumanTurn;
-    static char humanSymbol;
-    static char computerSymbol;
-
     public static void main(String[] args) {
-        tossAndAssignSymbols();
-        displayTossResult();
+
+        int slot = getUserSlot();
+        System.out.println("Slot entered: " + slot);
     }
 
     /**
-     * Uses random logic to decide the first player and assigns symbols
+     * Reads an integer slot value from the user.
      */
-    static void tossAndAssignSymbols() {
-        Random random = new Random();
+    static int getUserSlot() {
+        Scanner scanner = new Scanner(System.in);
 
-        // Toss: 0 or 1
-        int toss = random.nextInt(2);
+        System.out.print("Enter a slot number (1-9): ");
 
-        if (toss == 0) {
-            // Human starts
-            isHumanTurn = true;
+        int slot = scanner.nextInt();  // Read input
 
-            // Randomly assign symbol
-            if (random.nextBoolean()) {
-                humanSymbol = 'X';
-                computerSymbol = 'O';
-            } else {
-                humanSymbol = 'O';
-                computerSymbol = 'X';
-            }
-
-        } else {
-            // Computer starts
-            isHumanTurn = false;
-
-            // Randomly assign symbol
-            if (random.nextBoolean()) {
-                computerSymbol = 'X';
-                humanSymbol = 'O';
-            } else {
-                computerSymbol = 'O';
-                humanSymbol = 'X';
-            }
-        }
-    }
-
-    /**
-     * Displays the toss result
-     */
-    static void displayTossResult() {
-        if (isHumanTurn) {
-            System.out.println("Human won the toss and will play first.");
-        } else {
-            System.out.println("Computer won the toss and will play first.");
-        }
-
-        System.out.println("Human Symbol: " + humanSymbol);
-        System.out.println("Computer Symbol: " + computerSymbol);
+        return slot;  // Return the entered value
     }
 }
