@@ -1,25 +1,18 @@
 /**
- * UC4: Convert slot (1–9) to row & column (0–2)
+ * Checks if the given row and column are within bounds
+ * and if the target cell is empty.
  */
-public class TicTacToe {
+static boolean isValidMove(int row, int col) {
 
-    public static void main(String[] args) {
-        int slot = 7;
-
-        int row = getRowFromSlot(slot);
-        int col = getColFromSlot(slot);
-
-        System.out.println("Row: " + row);
-        System.out.println("Column: " + col);
+    // Check boundaries (0–2)
+    if (row < 0 || row > 2 || col < 0 || col > 2) {
+        return false;
     }
 
-    // Returns row index (0–2)
-    static int getRowFromSlot(int slot) {
-        return (slot - 1) / 3;
+    // Check if cell is empty
+    if (board[row][col] != ' ') {
+        return false;
     }
 
-    // Returns column index (0–2)
-    static int getColFromSlot(int slot) {
-        return (slot - 1) % 3;
-    }
+    return true;
 }
