@@ -1,18 +1,23 @@
-/**
- * Checks if the given row and column are within bounds
- * and if the target cell is empty.
- */
-static boolean isValidMove(int row, int col) {
+public class TicTacToe {
 
-    // Check boundaries (0–2)
-    if (row < 0 || row > 2 || col < 0 || col > 2) {
-        return false;
+    static char[][] board = new char[3][3];
+
+    /**
+     * Entry point of the program. Places a sample move
+     * and prints the updated cell value.
+     */
+    public static void main(String[] args) {
+        placeMove(0, 0, 'X');
+        System.out.println(board[0][0]);
     }
 
-    // Check if cell is empty
-    if (board[row][col] != ' ') {
-        return false;
+    /**
+     * Updates the board by placing the given symbol at
+     * the specified row and column.
+     * Input: Row, Column, Symbol
+     * Hint: Assume the move is already validated.
+     */
+    static void placeMove(int row, int col, char symbol) {
+        board[row][col] = symbol;
     }
-
-    return true;
 }
