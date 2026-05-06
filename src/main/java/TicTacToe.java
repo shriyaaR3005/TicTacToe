@@ -1,22 +1,24 @@
-static void computerMove() {
-    Random rand = new Random();
-    int slot;
-    int row, col;
+public static void main(String[] args) {
 
-    while (true) {
-        // Step 1: Generate random slot (1–9)
-        slot = rand.nextInt(9) + 1;
+    while (!gameOver) {
 
-        // Step 2: Convert slot to row & column
-        row = (slot - 1) / 3;
-        col = (slot - 1) % 3;
-
-        // Step 3: Check if the position is empty
-        if (board[row][col] == '-') {
-            // Step 4: Place computer symbol
-            board[row][col] = computerSymbol;
-            System.out.println("Computer chose slot: " + slot);
-            break; // exit loop after valid move
+        if (isHumanTurn) {
+            System.out.println("Human's Turn");
+            humanMove();   // assume already implemented
+        } else {
+            System.out.println("Computer's Turn");
+            computerMove();
         }
+
+        // Check game status after every move
+        if (checkWin() || checkDraw()) {
+            gameOver = true;
+            break;
+        }
+
+        // Switch turns
+        isHumanTurn = !isHumanTurn;
     }
+
+    System.out.println("Game Over!");
 }
