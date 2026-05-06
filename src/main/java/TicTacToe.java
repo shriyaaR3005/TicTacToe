@@ -1,23 +1,22 @@
-public class TicTacToe {
+static void computerMove() {
+    Random rand = new Random();
+    int slot;
+    int row, col;
 
-    static char[][] board = new char[3][3];
+    while (true) {
+        // Step 1: Generate random slot (1–9)
+        slot = rand.nextInt(9) + 1;
 
-    /**
-     * Entry point of the program. Places a sample move
-     * and prints the updated cell value.
-     */
-    public static void main(String[] args) {
-        placeMove(0, 0, 'X');
-        System.out.println(board[0][0]);
-    }
+        // Step 2: Convert slot to row & column
+        row = (slot - 1) / 3;
+        col = (slot - 1) % 3;
 
-    /**
-     * Updates the board by placing the given symbol at
-     * the specified row and column.
-     * Input: Row, Column, Symbol
-     * Hint: Assume the move is already validated.
-     */
-    static void placeMove(int row, int col, char symbol) {
-        board[row][col] = symbol;
+        // Step 3: Check if the position is empty
+        if (board[row][col] == '-') {
+            // Step 4: Place computer symbol
+            board[row][col] = computerSymbol;
+            System.out.println("Computer chose slot: " + slot);
+            break; // exit loop after valid move
+        }
     }
 }
