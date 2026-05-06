@@ -1,25 +1,51 @@
 public class TicTacToe {
 
+    // Board declaration
     static char[][] board = new char[3][3];
 
     public static void main(String[] args) {
 
-        // Initialize board with '-'
+        // Step 1: Initialize board with '-'
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 board[i][j] = '-';
             }
         }
 
-        // Sample board setup
-        board[0][0] = 'X';
-        board[0][1] = 'X';
-        board[0][2] = 'X';
+        // Step 2: Fill board (DRAW case)
+        board[0][0] = 'X'; board[0][1] = 'O'; board[0][2] = 'X';
+        board[1][0] = 'X'; board[1][1] = 'O'; board[1][2] = 'O';
+        board[2][0] = 'O'; board[2][1] = 'X'; board[2][2] = 'X';
 
-        // Test win condition
-        System.out.println(hasWon('X'));  // Expected: true
+        // Step 3: Check draw condition
+        if (isDraw()) {
+            System.out.println("It's a Draw!");
+        } else {
+            System.out.println("Not a Draw!");
+        }
     }
 
+    // -------- UC10 FUNCTION --------
+    static boolean isDraw() {
+
+        // If someone has already won → NOT a draw
+        if (hasWon('X') || hasWon('O')) {
+            return false;
+        }
+
+        // Check for empty cells
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[i][j] == '-') {
+                    return false;
+                }
+            }
+        }
+
+        return true; // No empty cells and no winner
+    }
+
+    // -------- REQUIRED FOR UC10 --------
     static boolean hasWon(char symbol) {
 
         // Rows
